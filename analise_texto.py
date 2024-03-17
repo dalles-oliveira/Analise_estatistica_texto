@@ -34,7 +34,7 @@ def get_text_from_web(url):
 
 def remove_stopwords(text):
     stop_words = set(stopwords.words('portuguese'))
-    words = nltk.word_tokenize(text.lower())
+    words = text.lower().split()  # Tokenização utilizando split()
     filtered_words = [word for word in words if word.isalnum() and word not in stop_words]
     return filtered_words
 

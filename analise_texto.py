@@ -39,11 +39,14 @@ def remove_stopwords(text):
     return filtered_words
 
 def generate_wordcloud(text):
-    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
-    plt.figure(figsize=(10, 5))
-    plt.imshow(wordcloud, interpolation='bilinear')
-    plt.axis('off')
-    st.pyplot(plt)
+    try:
+        wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+        plt.figure(figsize=(10, 5))
+        plt.imshow(wordcloud, interpolation='bilinear')
+        plt.axis('off')
+        st.pyplot(plt)
+    except Exception as e:
+        st.error(f"Erro ao gerar a nuvem de palavras: {e}")
 
 def main():
     text = ''  # Definindo a variável text como vazio

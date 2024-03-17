@@ -8,15 +8,17 @@ from nltk.corpus import stopwords
 from collections import Counter
 import PyPDF2
 import docx2txt
+from io import BytesIO
 
 nltk.download('stopwords')
+nltk.download('punkt')  # Adicionando esta linha para baixar o tokenizador de sentenças
 
-def extract_text_from_pdf(file_path):
-    with open(file_path, 'rb') as file:
-        reader = PyPDF2.PdfReader(file)
-        text = ''
-        for page in reader.pages:
-            text += page.extract_text()
+def extract_text_from_pdf(file):
+    buffer = BytesIO(file.read())
+    reader = PyPDF2.PdfReader(buffer)
+    text = ''
+    for page in reader.pages:
+        text += page.extract_text()
     return text
 
 def extract_text_from_docx(file_path):
@@ -44,6 +46,7 @@ def generate_wordcloud(text):
     st.pyplot(plt)
 
 def main():
+    text = ''  # Definindo a variável text como vazio
     st.title('Análise Estatística de Texto')
 
     input_option = st.radio('Selecione o tipo de entrada de dados:', ('PDF', 'Word', 'Link da Página', 'Texto Direto'))

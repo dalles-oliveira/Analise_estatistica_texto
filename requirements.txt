@@ -1,6 +1,6 @@
 beautifulsoup4==4.12.3
 requests==2.31.0
-wordcloud==1.8.1
+wordcloud
 matplotlib==3.4.3
 nltk==3.6.3
 pdfplumber==0.11.0

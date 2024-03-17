@@ -41,16 +41,16 @@ def remove_stopwords(text):
 def generate_wordcloud(text):
     try:
         wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
-        plt.figure(figsize=(10, 5))
-        plt.imshow(wordcloud, interpolation='bilinear')
-        plt.axis('off')
-        st.pyplot(plt)
+        fig, ax = plt.subplots(figsize=(10, 6))
+        ax.imshow(wordcloud, interpolation='bilinear')
+        ax.axis('off')  # Desativa os eixos
+        st.pyplot(fig)
     except Exception as e:
         st.error(f"Erro ao gerar a nuvem de palavras: {e}")
 
 def main():
     text = ''  # Definindo a variável text como vazio
-    st.title('Análise Estatística de Texto')
+    st.title('Atividade 1 - Análise Estatística de Texto')
 
     input_option = st.radio('Selecione o tipo de entrada de dados:', ('PDF', 'Word', 'Link da Página', 'Texto Direto'))
 
